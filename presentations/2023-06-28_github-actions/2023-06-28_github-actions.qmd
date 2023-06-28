@@ -1,0 +1,357 @@
+---
+format:
+  revealjs:
+    theme: ./templates/uu.scss
+    logo: ./templates/UU_logo_2021_EN_RGB.png
+    controls: true
+    navigation-mode: linear
+    slide-number: true
+    multiplex: true
+    footer: "Jelle Treep"
+---
+
+# Welcome to the Programming Cafe! {background-color="#FFCD00"}
+
+![](./templates/UU_logo_2021_EN_RGB.png){.absolute top=-200 left=-240 width="300" height="120"}
+
+## Plan for today
+
+::: {style="text-align: left; margin-top: 2em"}
+
+|    |    |
+|------------------------------|-------------|
+| Walk in | 15 min |
+| Programming Cafe | 10 min |
+| GitHub Actions | 35 min |
+| Exercises or Work on your own code | 50 min |
+| Wrap-up | 10 min |
+| Drinks! |
+
+:::
+
+## Programming Cafe
+
+::: {style="text-align: left; margin-top: 2em"}
+
+-    R-Cafe
+-    Format
+-    Community event
+-    Open to UU, HU, UMCU
+-    Researchers, students, support staff
+-    It is OK to work on your own code
+
+:::
+
+## Programming Cafe
+
+::: {style="text-align: left; margin-top: 2em"}
+
+-    Ideas for next year
+-    Core team members
+-    Feedback welcome! 
+
+[tinyurl.com/uucafe](https://tinyurl.com/uucafe)
+
+:::
+
+# Basics of GitHub Actions {background-color="#FFCD00"}
+
+Research Data Management Support
+
+![](./templates/UU_logo_2021_EN_RGB.png){.absolute top=-200 left=-240 width="300" height="120"}
+---
+
+## Presentation link
+
+[tinyurl.com/uucafepres](https://tinyurl.com/uucafepres)
+
+## What is GitHub?
+
+::: columns
+::: {.column width="55%"}
+<br>
+An online repository, based on Git software, for:
+
+-   storing with version control
+-   collaboration
+-   publishing
+-   project management
+-   and more!
+:::
+::: {.column width="45%"}
+<br>
+<br>
+![](images/github-logo.png){align="center" width="100%"}
+:::
+:::
+
+## GitHub @UtrechtUniversity {background-color="#FFCD00"}
+
+<br>
+<br>
+<br>
+<br>
+
+**[https://github.com/UtrechtUniversity](https://github.com/UtrechtUniversity){preview-link="true"}**
+
+![](./templates/UU_logo_2021_EN_RGB.png){.absolute top=-200 left=-240 width="300" height="120"}
+
+## What is GitHub Actions
+
+::: {style="text-align: left; margin-top: 2em"}
+
+-    GitHub feature to do magic stuff
+-    Free (for public repositories)
+-    Perform various tasks on the servers of GitHub
+-    Automate workflows
+-    Events/scheduled times
+
+:::
+
+## Why using GitHub Actions?
+
+**Automation of:**
+
+<ul>
+  <li>Running checks and tests</li>
+  <li>Packaging/publishing</li>
+  <li>Parsing/rendering
+    <ul>
+      <li>GitHub Pages</li>
+      <li>Websites</li>
+      <li>Documentation</li>
+    </ul>
+  </li>
+  <li>Other stuff</li>
+</ul>
+
+## Cool features:
+
+::: {style="text-align: left; margin-top: 2em"}
+-    Test on several Operating systems (e.g. Windows, macOS, Ubuntu)
+-    Simultaneous testing across multiple operating systems and (python) versions 
+-    Multi-container testing (Docker-compose)
+-    Creating and reusing actions from GitHub Marketplace
+-    Interact with GitHub API (e.g. comment on pull request, create issues)
+
+:::
+
+## Example:
+
+<br/>
+<br/>
+
+[Example](https://github.com/UtrechtUniversity/patent-breakthrough/){preview-link="false"}
+
+## Terminology{.smaller}
+
+::: {style="text-align: left; margin-top: 2em"}
+
+### Action
+
+An action is a custom application for the GitHub Actions platform that performs a complex but frequently repeated task (e.g. installing Python). Use an action to help reduce the amount of repetitive code that you write in your workflow files.
+
+<br/>
+<br/>
+
+### Event
+An event is a specific activity in a repository that triggers GitHub Actions to start. For example, activity can originate from GitHub when someone creates a pull request, opens an issue, or pushes a commit to a repository. You can also trigger GitHub Actions on a schedule.  
+
+:::
+
+## Terminology{.smaller}
+
+<br/>
+
+### Jobs
+A job is a set of steps in a workflow that execute on the same **runner** (or server). Each step is either a shell script/command that will be executed, or an **Action** that will be run. Steps are executed in order and are dependent on each other.
+
+<br/>
+<br/>
+
+### Workflow
+A workflow is one (or a set of) **job(s)** that are defined in a script (YAML file) and triggered by **events**
+
+
+## Terminology{.smaller}
+
+<br/>
+
+### Runner
+A runner is a server that runs your workflows when they're triggered. Each runner can run a single job at a time. GitHub provides Ubuntu Linux, Microsoft Windows, and macOS runners to run your workflows; each workflow run executes in a fresh, newly-provisioned virtual machine.
+
+<br/>
+<br/>
+
+[Further reading](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
+
+## Summary
+
+![](images/actions-structure.png)
+
+
+## Exercise!
+
+::: {style="text-align: left; margin-top: 4em"}
+
+Check out [https://github.com/UtrechtUniversity/programming-cafe](https://github.com/UtrechtUniversity/programming-cafe){preview-link="true"}
+
+You can try out any of the exercises, we do have some recommendations based on today's presentation:
+
+-   For GitHub beginners, the [Introduction to GitHub](https://github.com/skills/introduction-to-github) exercise is a nice start. 
+    You'll make a short Markdown file you can use as your profile README and learn about repositories, branches, commits, and pull requests while doing so!
+
+-   For GitHub users that want to get started with GitHub actions, the [Hello GitHub Actions](https://github.com/skills/hello-github-actions) exercise is a great introduction to the topic.
+
+:::
+# Part 2: Save the planet, one GitHub Action at a time {background-color="#FFCD00"}
+---
+
+![](images/blog.png)
+ 
+## Free unlimited resources?
+
+* running any code will have an environmental impact
+* all data centers and data transmission networks account for 2–3% of global electricity use (IEA, 2022)
+* Microsoft increased its CO2 emissions by nearly 15% from 2020 to 2022.
+
+## My typical GitHub Actions Workflow
+
+[Example](https://github.com/UtrechtUniversity/re-python-package){preview-link="true"}
+
+## Reduce! Reuse! Recycle!
+
+It will save you time and the planet!
+
+## Reduce
+
+**Restrict branch and event types**
+
+```yaml
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - ready_for_review
+
+```
+
+## Filter by changed files
+
+```
+project-to-save-the-planet/
+├── docs/
+│   └── the_plan.md
+│   └── ...
+├── src/
+│   ├── save_the_planet.py
+│   ├── supporting_documentation.md
+│   └── ...
+├── tests/
+│   └── ...
+├── ...
+└── README.md
+```
+
+## Filter by changed files
+
+```yaml
+# docs.yml
+on:
+  push:
+    ...
+    paths:
+      - 'docs/**'
+
+jobs:
+  ...
+```
+
+## Filter by changed files
+
+```yaml
+# tests.yml
+on:
+  push:
+    ...
+    paths:
+      - 'src/**'
+      - '!src/supporting_documentation.md'
+      - 'tests/**'
+
+jobs:
+  ...
+```
+
+## Exclude pushes to certain files
+
+```yaml
+# tests.yml
+on:
+  push:
+    ...
+    paths:
+      - 'src/**'
+      - '!src/supporting_documentation.md'
+      - 'tests/**'
+
+jobs:
+  ...
+```
+
+## Use CPU versions of tensorflow and pytorch
+
+
+# {data-background-color="#FFCD00"}
+
+![](./templates/UU_logo_2021_EN_RGB_payoff.png)
+
+
+## Reuse
+
+* Caching and reusing dependencies
+* Things that do not change much between runs  
+  + Setup environment
+  + pre compute something
+  + compiling
+
+## Reuse
+
+```yaml
+# tests.yaml
+jobs:
+  test:
+    steps:
+      ...
+      
+      - uses: actions/cache@v3
+        id: cache-python-env
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}
+
+      - name: Install dependencies
+        if: steps.cache-python-env.outputs.cache-hit != 'true'
+        run: |
+          python -m pip install -e .[develop]
+```
+
+
+
+
+
+
+## Summary
+
+**Reduce:**  
+
+* Work with draft pull requests
+* Use conditional workflows
+
+**Reuse:**  
+
+* Cache dependencies
