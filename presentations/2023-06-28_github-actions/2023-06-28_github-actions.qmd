@@ -62,7 +62,8 @@ Research Data Management Support
 ---
 
 ## Presentation link
-
+<br>
+<br>
 [tinyurl.com/uucafepres](https://tinyurl.com/uucafepres)
 
 ## What is GitHub?
@@ -72,7 +73,7 @@ Research Data Management Support
 <br>
 An online repository, based on Git software, for:
 
--   storing with version control
+-   storing and managing versions of code and documents
 -   collaboration
 -   publishing
 -   project management
@@ -103,7 +104,7 @@ An online repository, based on Git software, for:
 -    GitHub feature to do magic stuff
 -    Free (for public repositories)
 -    Perform various tasks on the servers of GitHub
--    Automate workflows
+-    Automate things
 -    Events/scheduled times
 
 :::
@@ -189,6 +190,16 @@ A runner is a server that runs your workflows when they're triggered. Each runne
 
 ![](images/actions-structure.png)
 
+## Use cases for first time using GitHub Actions
+
+:::{style="text-align: left; margin-top: 2em"}
+
+When to start with github actions? NOW!
+
+-    Automate checks and tests
+-    Automate website building
+-    Automate documentation building
+:::
 
 ## Exercise!
 
@@ -196,36 +207,74 @@ A runner is a server that runs your workflows when they're triggered. Each runne
 
 Check out [https://github.com/UtrechtUniversity/programming-cafe](https://github.com/UtrechtUniversity/programming-cafe){preview-link="true"}
 
-You can try out any of the exercises, we do have some recommendations based on today's presentation:
-
--   For GitHub beginners, the [Introduction to GitHub](https://github.com/skills/introduction-to-github) exercise is a nice start. 
-    You'll make a short Markdown file you can use as your profile README and learn about repositories, branches, commits, and pull requests while doing so!
-
--   For GitHub users that want to get started with GitHub actions, the [Hello GitHub Actions](https://github.com/skills/hello-github-actions) exercise is a great introduction to the topic.
-
 :::
+
 # Part 2: Save the planet, one GitHub Action at a time {background-color="#FFCD00"}
 ---
 
 ![](images/blog.png)
  
-## Free unlimited resources?
+## Unlimited free resources?
 
-* running any code will have an environmental impact
-* all data centers and data transmission networks account for 2–3% of global electricity use (IEA, 2022)
+::: {style="text-align: left; margin-top: 2em"}
+
+* Running any code will have an environmental impact
+* Data centers account for 2–3% of global electricity use (IEA, 2022)
 * Microsoft increased its CO2 emissions by nearly 15% from 2020 to 2022.
+
+:::
 
 ## My typical GitHub Actions Workflow
 
-[Example](https://github.com/UtrechtUniversity/re-python-package){preview-link="true"}
+```yaml
+name: python-package
+
+on: [push, pull_request]
+
+jobs:
+
+  build:
+    name: Build for (${{ matrix.python-version }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['ubuntu-latest', 'macos-latest', 'windows-latest']
+        python-version: ['3.6', '3.7', '3.8', '3.9']
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        flake8 mypackage tests
+    - name: Test with pytest
+      run: |
+        pip install pytest
+        pytest tests
+```
+
+
+
 
 ## Reduce! Reuse! Recycle!
-
+<br>
+<br>
 It will save you time and the planet!
 
 ## Reduce
 
 **Restrict branch and event types**
+
+-    Work with draft pull requests!
 
 ```yaml
 on:
@@ -242,6 +291,8 @@ on:
 
 ## Filter by changed files
 
+:::{style="text-align: left; margin-top: 2em"}
+
 ```
 project-to-save-the-planet/
 ├── docs/
@@ -256,8 +307,11 @@ project-to-save-the-planet/
 ├── ...
 └── README.md
 ```
+:::
 
 ## Filter by changed files
+
+:::{style="text-align: left; margin-top: 2em"}
 
 ```yaml
 # docs.yml
@@ -270,24 +324,11 @@ on:
 jobs:
   ...
 ```
+:::
 
 ## Filter by changed files
 
-```yaml
-# tests.yml
-on:
-  push:
-    ...
-    paths:
-      - 'src/**'
-      - '!src/supporting_documentation.md'
-      - 'tests/**'
-
-jobs:
-  ...
-```
-
-## Exclude pushes to certain files
+:::{style="text-align: left; margin-top: 2em"}
 
 ```yaml
 # tests.yml
@@ -302,22 +343,24 @@ on:
 jobs:
   ...
 ```
+:::
 
-## Use CPU versions of tensorflow and pytorch
+## Reduce
 
-
-# {data-background-color="#FFCD00"}
-
-![](./templates/UU_logo_2021_EN_RGB_payoff.png)
-
+Use CPU versions of tensorflow and pytorch
 
 ## Reuse
 
-* Caching and reusing dependencies
-* Things that do not change much between runs  
-  + Setup environment
+* Caching and reusing stuff
+
+**When?**
+
+* When there are things that do not change between runs most of the times
+  + Setting up environment
   + pre compute something
   + compiling
+
+See: [Cache action](https://github.com/actions/cache)
 
 ## Reuse
 
@@ -337,13 +380,30 @@ jobs:
       - name: Install dependencies
         if: steps.cache-python-env.outputs.cache-hit != 'true'
         run: |
-          python -m pip install -e .[develop]
+          python -m pip install -e .
 ```
 
+## Recycle
 
+Restart tests from last failed test with the Pytest `--last-failed` option
 
+-    Cache test results
 
+Exising GitHub action:
 
+```yaml
+tests.yaml
+jobs:
+  test:
+    steps:
+      # create python environment and install pytest    
+      ...  
+
+    - name: Run pytest
+      uses: sjvrijn/pytest-last-failed@v2
+      with:
+        pytest-args: '--my --pytest --args'
+```
 
 ## Summary
 
@@ -355,3 +415,18 @@ jobs:
 **Reuse:**  
 
 * Cache dependencies
+
+**Recycle:**  
+
+* Recycle test results
+
+## Questions?
+
+Check out [https://github.com/UtrechtUniversity/programming-cafe](https://github.com/UtrechtUniversity/programming-cafe){preview-link="true"} if you want to try exercises.
+
+Check out [https://blog.esciencecenter.nl/](https://blog.esciencecenter.nl/){preview-link="true"} for the original blog post
+
+# {data-background-color="#FFCD00"}
+
+![](./templates/UU_logo_2021_EN_RGB_payoff.png)
+

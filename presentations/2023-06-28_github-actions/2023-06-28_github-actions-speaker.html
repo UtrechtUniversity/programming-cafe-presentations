@@ -457,7 +457,7 @@
 </section>
 <section id="presentation-link" class="slide level2">
 <h2>Presentation link</h2>
-<p><a href="https://tinyurl.com/uucafepres">tinyurl.com/uucafepres</a></p>
+<p><br> <br> <a href="https://tinyurl.com/uucafepres">tinyurl.com/uucafepres</a></p>
 </section>
 <section id="what-is-github" class="slide level2">
 <h2>What is GitHub?</h2>
@@ -465,7 +465,7 @@
 <div class="column" style="width:55%;">
 <p><br> An online repository, based on Git software, for:</p>
 <ul>
-<li>storing with version control</li>
+<li>storing and managing versions of code and documents</li>
 <li>collaboration</li>
 <li>publishing</li>
 <li>project management</li>
@@ -489,7 +489,7 @@
 <li>GitHub feature to do magic stuff</li>
 <li>Free (for public repositories)</li>
 <li>Perform various tasks on the servers of GitHub</li>
-<li>Automate workflows</li>
+<li>Automate things</li>
 <li>Events/scheduled times</li>
 </ul>
 </div>
@@ -571,15 +571,21 @@ Other stuff
 <h2>Summary</h2>
 
 <img data-src="images/actions-structure.png" class="r-stretch"></section>
+<section id="use-cases-for-first-time-using-github-actions" class="slide level2">
+<h2>Use cases for first time using GitHub Actions</h2>
+<div style="text-align: left; margin-top: 2em">
+<p>When to start with github actions? NOW!</p>
+<ul>
+<li>Automate checks and tests</li>
+<li>Automate website building</li>
+<li>Automate documentation building</li>
+</ul>
+</div>
+</section>
 <section id="exercise" class="slide level2">
 <h2>Exercise!</h2>
 <div style="text-align: left; margin-top: 4em">
 <p>Check out <a href="https://github.com/UtrechtUniversity/programming-cafe" data-preview-link="true">https://github.com/UtrechtUniversity/programming-cafe</a></p>
-<p>You can try out any of the exercises, we do have some recommendations based on today’s presentation:</p>
-<ul>
-<li><p>For GitHub beginners, the <a href="https://github.com/skills/introduction-to-github">Introduction to GitHub</a> exercise is a nice start. You’ll make a short Markdown file you can use as your profile README and learn about repositories, branches, commits, and pull requests while doing so!</p></li>
-<li><p>For GitHub users that want to get started with GitHub actions, the <a href="https://github.com/skills/hello-github-actions">Hello GitHub Actions</a> exercise is a great introduction to the topic.</p></li>
-</ul>
 </div>
 </section></section>
 <section>
@@ -591,37 +597,75 @@ Other stuff
 
 
 <img data-src="images/blog.png" class="r-stretch"></section>
-<section id="free-unlimited-resources" class="slide level2">
-<h2>Free unlimited resources?</h2>
+<section id="unlimited-free-resources" class="slide level2">
+<h2>Unlimited free resources?</h2>
+<div style="text-align: left; margin-top: 2em">
 <ul>
-<li>running any code will have an environmental impact</li>
-<li>all data centers and data transmission networks account for 2–3% of global electricity use (IEA, 2022)</li>
+<li>Running any code will have an environmental impact</li>
+<li>Data centers account for 2–3% of global electricity use (IEA, 2022)</li>
 <li>Microsoft increased its CO2 emissions by nearly 15% from 2020 to 2022.</li>
 </ul>
+</div>
 </section>
 <section id="my-typical-github-actions-workflow" class="slide level2">
 <h2>My typical GitHub Actions Workflow</h2>
-<p><a href="https://github.com/UtrechtUniversity/re-python-package" data-preview-link="true">Example</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> python-package</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">on</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">push</span><span class="kw">,</span><span class="at"> pull_request</span><span class="kw">]</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build for (${{ matrix.python-version }}, ${{ matrix.os }})</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ${{ matrix.os }}</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="at">    </span><span class="fu">strategy</span><span class="kw">:</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="at">      </span><span class="fu">fail-fast</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="at">      </span><span class="fu">matrix</span><span class="kw">:</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="at">        </span><span class="fu">os</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">'ubuntu-latest'</span><span class="kw">,</span><span class="at"> </span><span class="st">'macos-latest'</span><span class="kw">,</span><span class="at"> </span><span class="st">'windows-latest'</span><span class="kw">]</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">'3.6'</span><span class="kw">,</span><span class="at"> </span><span class="st">'3.7'</span><span class="kw">,</span><span class="at"> </span><span class="st">'3.8'</span><span class="kw">,</span><span class="at"> </span><span class="st">'3.9'</span><span class="kw">]</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python ${{ matrix.python-version }}</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v2</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="at">          </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> ${{ matrix.python-version }}</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>        python -m pip install --upgrade pip</span>
+<span id="cb1-25"><a href="#cb1-25"></a>        pip install -r requirements.txt</span>
+<span id="cb1-26"><a href="#cb1-26"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Lint with flake8</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>        pip install flake8</span>
+<span id="cb1-29"><a href="#cb1-29"></a>        flake8 mypackage tests</span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test with pytest</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a>        pip install pytest</span>
+<span id="cb1-33"><a href="#cb1-33"></a>        pytest tests</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="reduce-reuse-recycle" class="slide level2">
 <h2>Reduce! Reuse! Recycle!</h2>
-<p>It will save you time and the planet!</p>
+<p><br> <br> It will save you time and the planet!</p>
 </section>
 <section id="reduce" class="slide level2">
 <h2>Reduce</h2>
 <p><strong>Restrict branch and event types</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="at">      </span><span class="kw">-</span><span class="at"> main</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> main</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="at">    </span><span class="fu">types</span><span class="kw">:</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ready_for_review</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Work with draft pull requests!</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="at">      </span><span class="kw">-</span><span class="at"> main</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> main</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="at">    </span><span class="fu">types</span><span class="kw">:</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> ready_for_review</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="filter-by-changed-files" class="slide level2">
 <h2>Filter by changed files</h2>
+<div style="text-align: left; margin-top: 2em">
 <pre><code>project-to-save-the-planet/
 ├── docs/
 │   └── the_plan.md
@@ -634,35 +678,25 @@ Other stuff
 │   └── ...
 ├── ...
 └── README.md</code></pre>
+</div>
 </section>
 <section id="filter-by-changed-files-1" class="slide level2">
 <h2>Filter by changed files</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># docs.yml</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="at">    ...</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">'docs/**'</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="at">  ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="filter-by-changed-files-2" class="slide level2">
-<h2>Filter by changed files</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># tests.yml</span></span>
+<div style="text-align: left; margin-top: 2em">
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># docs.yml</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="fu">on</span><span class="kw">:</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="at">    ...</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">'src/**'</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">'!src/supporting_documentation.md'</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">'tests/**'</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="at">  ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">'docs/**'</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="at">  ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="exclude-pushes-to-certain-files" class="slide level2">
-<h2>Exclude pushes to certain files</h2>
+<section id="filter-by-changed-files-2" class="slide level2">
+<h2>Filter by changed files</h2>
+<div style="text-align: left; margin-top: 2em">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># tests.yml</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="fu">on</span><span class="kw">:</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
@@ -674,26 +708,27 @@ Other stuff
 <span id="cb5-9"><a href="#cb5-9"></a></span>
 <span id="cb5-10"><a href="#cb5-10"></a><span class="fu">jobs</span><span class="kw">:</span></span>
 <span id="cb5-11"><a href="#cb5-11"></a><span class="at">  ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="use-cpu-versions-of-tensorflow-and-pytorch" class="slide level2">
-<h2>Use CPU versions of tensorflow and pytorch</h2>
-</section></section>
-<section>
-<section id="section" class="title-slide slide level1 center" data-background-color="#FFCD00">
-<h1></h1>
-
-<img data-src="./templates/UU_logo_2021_EN_RGB_payoff.png" class="r-stretch"></section>
+<section id="reduce-1" class="slide level2">
+<h2>Reduce</h2>
+<p>Use CPU versions of tensorflow and pytorch</p>
+</section>
 <section id="reuse" class="slide level2">
 <h2>Reuse</h2>
 <ul>
-<li>Caching and reusing dependencies</li>
-<li>Things that do not change much between runs
+<li>Caching and reusing stuff</li>
+</ul>
+<p><strong>When?</strong></p>
 <ul>
-<li>Setup environment</li>
+<li>When there are things that do not change between runs most of the times
+<ul>
+<li>Setting up environment</li>
 <li>pre compute something</li>
 <li>compiling</li>
 </ul></li>
 </ul>
+<p>See: <a href="https://github.com/actions/cache">Cache action</a></p>
 </section>
 <section id="reuse-1" class="slide level2">
 <h2>Reuse</h2>
@@ -712,7 +747,26 @@ Other stuff
 <span id="cb6-13"><a href="#cb6-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
 <span id="cb6-14"><a href="#cb6-14"></a><span class="at">        </span><span class="fu">if</span><span class="kw">:</span><span class="at"> steps.cache-python-env.outputs.cache-hit != 'true'</span></span>
 <span id="cb6-15"><a href="#cb6-15"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a>          python -m pip install -e .[develop]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-16"><a href="#cb6-16"></a>          python -m pip install -e .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="recycle" class="slide level2">
+<h2>Recycle</h2>
+<p>Restart tests from last failed test with the Pytest <code>--last-failed</code> option</p>
+<ul>
+<li>Cache test results</li>
+</ul>
+<p>Exising GitHub action:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1"></a><span class="at">tests.yaml</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="at">  </span><span class="fu">test</span><span class="kw">:</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">      # create python environment and install pytest    </span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="at">      ...  </span></span>
+<span id="cb7-7"><a href="#cb7-7"></a></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run pytest</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> sjvrijn/pytest-last-failed@v2</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="at">        </span><span class="fu">pytest-args</span><span class="kw">:</span><span class="at"> </span><span class="st">'--my --pytest --args'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="summary-1" class="slide level2">
 <h2>Summary</h2>
@@ -725,11 +779,24 @@ Other stuff
 <ul>
 <li>Cache dependencies</li>
 </ul>
-
-<img src="./templates/UU_logo_2021_EN_RGB.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<p><strong>Recycle:</strong></p>
+<ul>
+<li>Recycle test results</li>
+</ul>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions?</h2>
+<p>Check out <a href="https://github.com/UtrechtUniversity/programming-cafe" data-preview-link="true">https://github.com/UtrechtUniversity/programming-cafe</a> if you want to try exercises.</p>
+<p>Check out <a href="https://blog.esciencecenter.nl/" data-preview-link="true">https://blog.esciencecenter.nl/</a> for the original blog post</p>
+</section></section>
+<section id="section" class="title-slide slide level1 center" data-background-color="#FFCD00">
+<h1></h1>
+<p><img data-src="./templates/UU_logo_2021_EN_RGB_payoff.png"></p>
+<p><img src="./templates/UU_logo_2021_EN_RGB.png" class="slide-logo"></p>
+<div class="footer footer-default">
 <p>Jelle Treep</p>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
